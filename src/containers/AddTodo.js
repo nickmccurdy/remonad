@@ -1,12 +1,12 @@
 import React from 'react'
-import { Context } from '../Remonad'
+import { Connect } from '../Remonad'
 
 export default () => {
   let input
   let nextTodoId = 0
 
   return (
-    <Context.Consumer>
+    <Connect>
       {({ state, setState }) => (
         <form
           onSubmit={e => {
@@ -31,6 +31,6 @@ export default () => {
           <button type="submit">Add Todo</button>
         </form>
       )}
-    </Context.Consumer>
+    </Connect>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import TodoList from '../components/TodoList'
-import { Context } from '../Remonad'
+import { Connect } from '../Remonad'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -16,7 +16,7 @@ const getVisibleTodos = (todos, filter) => {
 }
 
 export default () => (
-  <Context.Consumer>
+  <Connect>
     {({ state, setState }) => (
       <TodoList
         todos={getVisibleTodos(state.todos, state.visibilityFilter)}
@@ -30,5 +30,5 @@ export default () => (
         }
       />
     )}
-  </Context.Consumer>
+  </Connect>
 )

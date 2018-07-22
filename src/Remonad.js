@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { Component, createContext } from 'react'
 
-export const Context = createContext()
+const Context = createContext()
 
-export default class Remonad extends Component {
+export const Connect = Context.Consumer
+
+export class Store extends Component {
   static propTypes = {
     children: PropTypes.node,
     initialState: PropTypes.object

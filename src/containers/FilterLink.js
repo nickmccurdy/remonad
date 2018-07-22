@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import Link from '../components/Link'
-import { Context } from '../Remonad'
+import { Connect } from '../Remonad'
 
 const FilterLink = ({ children, filter }) => (
-  <Context.Consumer>
+  <Connect>
     {({ state, setState }) => (
       <Link
         active={filter === state.visibilityFilter}
@@ -12,7 +12,7 @@ const FilterLink = ({ children, filter }) => (
         onClick={() => setState({ visibilityFilter: filter })}
       />
     )}
-  </Context.Consumer>
+  </Connect>
 )
 
 FilterLink.propTypes = {
