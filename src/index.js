@@ -1,15 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 import App from './components/App'
-import rootReducer from './reducers'
-
-const store = createStore(rootReducer)
+import Remonad from './Remonad'
 
 render(
-  <Provider store={store}>
+  <Remonad initialState={{ todos: [], visibilityFilter: 'SHOW_ALL' }}>
     <App />
-  </Provider>,
+  </Remonad>,
   document.getElementById('root')
 )

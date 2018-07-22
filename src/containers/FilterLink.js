@@ -1,16 +1,24 @@
-import { connect } from 'react-redux'
-import { setVisibilityFilter } from '../actions'
+import PropTypes from 'prop-types'
+import React from 'react'
 import Link from '../components/Link'
+import { Context } from '../Remonad'
 
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.visibilityFilter
-})
+const FilterLink = ({ children, filter }) => (
+  <Context.Consumer>
+    {({ state, setState }) => (
+      <Link
+        active={filter === state.visibilityFilter}
+        children={children}
+        onClick={() => setState({ visibilityFilter: filter })}
+      />
+    )}
+  </Context.Consumer>
+)
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(setVisibilityFilter(ownProps.filter))
-})
+FilterLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  filter: PropTypes.oneOf(['SHOW_ALL', 'SHOW_COMPLETED', 'SHOW_ACTIVE'])
+    .isRequired
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Link)
+export default FilterLink
